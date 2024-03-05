@@ -15,13 +15,18 @@ pygame.display.set_caption("Pong")
 ball = pygame.Rect(WIDTH/2 - 15, HEIGHT/2 - 15, 30, 30)
 left_paddle = pygame.Rect(50, HEIGHT/2 - 60, 20, 120)
 right_paddle = pygame.Rect(WIDTH - 70, HEIGHT/2 - 60, 20, 120)
-print(pygame.font.get_fonts())
 
 ###
 # load custom images
 ###
 left_paddle_overlay = pygame.image.load("green_sword.png")
 right_paddle_overlay = pygame.image.load("red_sword.png")
+ancient_ball = pygame.image.load("ball.png")
+
+###
+# scale ball image
+###
+ancient_ball = pygame.transform.scale(ancient_ball, (75, 75))
 
 ###
 # changed speed from 7 to 5
@@ -39,7 +44,7 @@ player2_score = 0
 ###
 # set font and font size
 ###
-font = pygame.font.SysFont('notosanscjkhk', 36)
+font = pygame.font.Font('UnifrakturCook-Bold.ttf', 40)
 
 # Main game loop
 running = True
@@ -111,10 +116,11 @@ while running:
     pygame.draw.ellipse(screen, WHITE, ball)
 
     ###
-    # draw images on top of rectangles
+    # draw images on top of rectangles and ball
     ###
     screen.blit(left_paddle_overlay, ((left_paddle.right - left_paddle.left) / 2 - 8, left_paddle.top))
     screen.blit(right_paddle_overlay, (WIDTH - 118, right_paddle.top))
+    screen.blit(ancient_ball, (ball.left - 25, ball.top - 25))
 
     ###
     # draw the name of the game
@@ -123,8 +129,8 @@ while running:
     screen.blit(game_name, (WIDTH/2 - 90, 20))
 
     # Draw the score
-    player1_text = font.render(f"{player1_score}", True, WHITE)
-    player2_text = font.render(f"{player2_score}", True, WHITE)
+    player1_text = font.render(f"{player1_score}", True, (50, 205, 50))
+    player2_text = font.render(f"{player2_score}", True, (252, 52, 42))
     screen.blit(player1_text, (WIDTH/4 - player1_text.get_width()/2, 20))
     screen.blit(player2_text, (WIDTH*3/4 - player2_text.get_width()/2, 20))
 
