@@ -31,8 +31,8 @@ ancient_ball = pygame.transform.scale(ancient_ball, (75, 75))
 ###
 # changed speed from 7 to 5
 ###
-ball_speed_x = 7 * random.choice((1, -1))
-ball_speed_y = 7 * random.choice((1, -1))
+ball_speed_x = 5 * random.choice((1, -1))
+ball_speed_y = 5 * random.choice((1, -1))
 paddle_speed = 0
 player1_speed = 0
 player2_speed = 0
@@ -106,6 +106,11 @@ while running:
 
     # Clear the screen
     screen.fill(BLACK)
+
+    ###
+    # draw border on screen
+    ###
+    pygame.draw.rect(screen, (50, 205, 50), (0, 0, WIDTH, HEIGHT), 5) 
 
     ###
     # changed color of rectangle paddles
